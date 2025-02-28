@@ -1,5 +1,6 @@
 package com.luizgmelo.librarysystem.models;
 
+import com.luizgmelo.librarysystem.dtos.BookDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,12 +10,11 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "isbn")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String isbn;
 
     @Column(nullable = false)
     private String title;
@@ -28,4 +28,14 @@ public class Book {
     private String category;
 
     private Integer totalPages;
+
+    public Book(BookDTO dto) {
+        this.isbn = dto.isbn();
+        this.title = dto.title();
+        this.summary = dto.summary();
+        this.author = dto.author();
+        this.publisher = dto.publisher();
+        this.category = dto.category();
+        this.totalPages = dto.totalPages();
+    }
 }
