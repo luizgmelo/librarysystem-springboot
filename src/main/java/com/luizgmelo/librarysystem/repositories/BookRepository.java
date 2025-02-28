@@ -10,6 +10,9 @@ import java.util.Optional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+    @Query("SELECT b FROM books b")
+    List<Book> findAllBooks();
+
     @Query("SELECT b " +
            "FROM books b " +
            "WHERE b.id = :id ")

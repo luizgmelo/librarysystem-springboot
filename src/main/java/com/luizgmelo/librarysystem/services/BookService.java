@@ -13,8 +13,12 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book getBookById(Long id) {
-        return bookRepository.findBookById(id)
+    public List<Book> getAllBooks() {
+        return bookRepository.findAllBooks();
+    }
+
+    public Book getOneBook(String isbn) {
+        return bookRepository.findBookByIsbn(isbn)
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado!"));
     }
 
